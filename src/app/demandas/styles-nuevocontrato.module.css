@@ -1,0 +1,520 @@
+.input::placeholder {
+  color: #000000;
+}
+
+.inputTexto::selection {
+  color: #eeeeee;
+  background: #000000;
+}
+
+.body {
+    font-family: "Proxima Nova", system-ui;
+    background: url(/IMG/Banner/patron.png) center center fixed;
+    color: #eeeeee;
+    position: relative;
+    display: grid;
+    font-weight: 700;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100dvh;
+}
+
+.seleccionasa {
+   width: 100%;
+    height: 100%;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cabezera {
+    display: flex;
+    background: #000000;
+    justify-content: space-between;
+    padding: 0 1rem;
+    align-items: center;
+    width: 100%;
+    height: 5.5rem;
+    box-shadow: #000000 0px 0px 13px 0px;
+}
+
+.tituloHeader,
+.titulo {
+  font-size: 40px;
+  color: #ffffff;
+  margin-top: 2rem;
+}
+
+.titulo {
+  width: 100%;
+  font-weight: bold;
+  font-size: 2rem;
+  border: 2px solid #eee;
+  border-radius: 0.5rem;
+  transition: all 1s ease;
+  box-shadow: 0.5rem 0.5rem 1rem #000000, -0.5em -0.5rem 1rem #000;
+  margin: 17px 0 10px 0;
+  position: relative;
+  bottom: 21px;
+  padding: 4px;
+  border-color: #ffffff;
+  text-align: center;
+  margin-bottom: 10px;
+  background: #090303;
+  color: #ffffff;
+}
+
+.tituloContratos {
+    font-size: 30px;
+  color: #ffffff;
+}
+
+.contenedorGeneral {
+    display: grid;
+align-items: start;
+justify-items: start;
+}
+
+.sectionParteUno {
+  display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: flex-start;
+}
+
+
+.contenedorFirma {
+      display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.contenedorFirmaInterno {
+      display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.opciones {
+    background: #e5e1e1;
+    font-weight: bold;
+    color: #000;
+    font-size: 20px;
+    border: 2px solid #eee;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: width 500ms ease;
+    box-shadow: 0.5px 0.5px 8px #eeeeee;
+    height: 2rem;
+    transition: background 500ms ease, color 500ms ease, box-shadow 500ms ease;
+}
+
+.p > .opciones {
+  margin: 0 0.5rem;
+}
+
+.contenedorGeneralDos {
+    width: 100%;
+    display: flex;
+    padding: 1rem 1rem;
+    -moz-column-gap: 4rem;
+    flex-wrap: wrap;
+    flex-direction: column;
+    row-gap: 1rem;
+    border-radius: 20px;
+    row-gap: 1rem;
+}
+
+.boton, .inputTexto {
+background: #e5e1e1;
+    font-weight: bold;
+    color: #000;
+    font-size: 20px;
+    padding: 1rem 0rem;
+    border: 2px solid #eee;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: width 500ms ease;
+    box-shadow: 0.5rem 0.5rem 1rem #000000, -0.5em -0.5rem 1rem #000;
+    width: 17rem;
+    transition: background 500ms ease, color 500ms ease, box-shadow 500ms ease;
+}
+
+.inputTexto {
+  width: auto;
+  box-shadow: none;
+  cursor: inherit;
+    height: 0;
+}
+
+.p {
+  font-size: 25px;
+}
+
+.boton:hover {
+  box-shadow: 0.5em 0.5rem 1rem #fff, -0.5em -0.5rem 1rem #ccc;
+  background: #000;
+  color: #fff;
+}
+
+.tabla {
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 10px;
+    border: 4px solid #eeeeee;
+    margin: 1rem 0 0 0;
+    font-size: 25px;
+}
+
+.tabla .tr:last-of-type .td:first-of-type {
+ border-bottom-left-radius: 10px;
+}
+
+.tabla .tr:last-of-type .td:last-of-type {
+ border-bottom-right-radius: 10px;
+}
+
+
+.tabla .th {
+    border: 1px solid white;
+        padding: 1rem;
+}
+
+
+.idTabla {
+  text-align: center;
+}
+
+.border-none-td {
+  border: none;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.contenedorTitulo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+.contenedorInformacion {
+    background: #000000;
+    padding: 2rem;
+    border-radius: 20px;
+    row-gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: #000000 0px 0px 13px 0px;
+}
+
+.botonEnviar {
+  background: #e5e1e1;
+  font-weight: bold;
+  color: #000;
+  font-size: 1rem;
+  padding: 1rem 4rem;
+  border: 2px solid #eee;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 1s ease;
+  box-shadow: 0.5rem 0.5rem 1rem #000000, -0.5em -0.5rem 1rem #000;
+  margin: 17px 0 10px 0;
+  width: 70%;
+}
+
+.botonEnviar:hover {
+  box-shadow: 0.5em 0.5rem 1rem #fff, -0.5em -0.5rem 1rem #ccc;
+  background: #000;
+  color: #fff;
+}
+
+.textoUsuario {
+  text-align: left;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.footer {
+  display: grid;
+  box-shadow: #000000 0px 0px 13px 0px;
+  bottom: 0;
+  width: 100%;
+  height: 5.5rem;
+  background: #000000;
+}
+
+.textoFooter {
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  word-break: break-word;
+  color: #ffffff;
+  font-size: 25px;
+}
+
+.label:hover {
+  color: #ffffff;
+}
+
+.errorInput {
+  color: #ffeb3b;
+  background: #000000e8;
+  font-size: 1rem;
+  align-self: center;
+  border-radius: 14px;
+  padding: 10px;
+  word-break: break-word;
+}
+
+/* Cosas de la cosa del dropdown */
+
+.nav__container {
+  width: 90%;
+  margin: 0 auto;
+  height: 70px;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-template-areas: "title img";
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.nav__title {
+  color: #fff;
+  grid-area: title;
+}
+
+.p-especial {
+  margin: 0.6rem 0;
+}
+
+.nav__icon {
+  width: 30px;
+  display: block;
+}
+
+.dropdown {
+  background-color: #000;
+  padding: 1rem;
+  border-radius: 20px;
+  display: grid;
+  align-content: center;
+  width: 28rem;
+  gap: 1rem;
+
+  overflow-y: auto;
+}
+
+.dropdown__list {
+  list-style: none;
+}
+
+.dropdown__link,
+.link_descarga {
+  color: rgb(184, 187, 191);
+  padding: 1em 0.7em;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 21px;
+  position: relative;
+  background-color: var(--bg, transparent);
+  border-radius: 6px;
+}
+
+.link_descarga {
+  margin: 1rem 0;
+  border: 2px solid #eeeeee;
+  justify-content: center;
+}
+
+.dropdown__link:hover {
+  color: #80ffbc;
+  background: #28303b;
+  border-radius: 6px;
+}
+
+.link_descarga:hover {
+    background-color: #270092a6;
+}
+
+.link_descarga:visited {
+    color: #9370db;
+    background-color: #270092a6;
+}
+
+.dropdown__li:hover {
+  border-radius: 6px;
+}
+
+.advertencia-span {
+  background: #4c2919;
+  color: #fe8d59;
+}
+
+.dropdown__list-especial:active {
+  background: #28303b;
+  border-radius: 6px;
+}
+
+.dropdown__check {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.dropdown__arrow {
+  margin-left: auto;
+  transform: var(--rotate, rotate(90deg));
+  transition: transform 500ms ease;
+}
+
+.arrow_special {
+  transform: rotate(0);
+  transition: transform 500ms ease;
+}
+
+.dropdown__link:active .arrow_special {
+  transform: rotate(90deg);
+}
+
+.dropdown__content {
+  display: grid;
+  grid-template-rows: var(--rows, 0fr);
+  transition: 0.3s grid-template-rows;
+}
+
+.bd-contenedor {
+  margin: 0 0 1rem 0;
+  background: #000000f5;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+.inform-contenedor {
+  background: #000000f5;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+.dropdown__sub {
+  overflow: hidden;
+  margin-left: -3rem;
+}
+
+.dropdown__li, .li-especial {
+  width: 85%;
+  cursor: pointer;
+  list-style: none;
+  margin-left: auto;
+
+}
+
+.li_especial {
+    border-radius: 6px;
+}
+
+.dropdown__list:has(:checked) {
+  --rows: 1fr;
+  --rotate: rotate(-90deg);
+  --bg: #28303b;
+}
+
+.dropdown__li:hover {
+  background: #28303b !important;
+}
+
+.dropdown__anchor {
+  padding: 1em 1rem;
+  cursor: pointer;
+  margin: 0.5rem 0 0 0;
+  display: block;
+  color: #b6babe;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.dropdown__li:hover .dropdown__anchor {
+  color: #87ceeb;
+}
+
+/* Fin del dropdown */
+
+.aparecerContenedor {
+  display: flex;
+}
+
+.desaparecerContenedor {
+  display: none;
+}
+
+
+@media screen and (max-width: 1066px) {
+  .body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  .cabezera {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .titulo {
+    width: 88%;
+  }
+
+  .contenedorTitulo {
+    margin: 0;
+  }
+
+  .contenedorGeneral {
+    margin: 1rem 0;
+  }
+
+
+.contenedorGeneralDos {
+  gap: 1rem;
+}
+
+  .contenedorFormulario {
+    width: 90%;
+    display: flex;
+    height: 48%;
+    flex-direction: row;
+  }
+
+  .contenedorInputs {
+    width: 92%;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .label[for="Nombre"] {
+    width: 50%;
+    text-align: center;
+  }
+
+  .enlaceRegcliente {
+    margin: 5px;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .botonEnviar {
+    width: 85%;
+  }
+}

@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@font-face {
+  font-family: ProximaNovaFont;
+  src: url(Fuentes/ProximaNovaFont.otf) format("opentype");
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+h1 {
+  text-wrap: pretty;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  font-size: 20px;
+  margin: 0.5rem 0 0 2rem;
+}
+
+li::before {
+  content: "• ";
+  color: white;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+::placeholder {
+  color: #000000ab;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+input {
+  outline: none;
+}
+
+input[type="date"] {
+  color: #000000;
+  text-align: center;
+}
+
+select {
+  outline: none;
+  color: #000000;
+}
+
+::selection {
+  background: #eeeeee;
+  color: #000000;
+}
+
+body {
+  font-family: ProximaNovaFont, "ProximaNovaFont", sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
