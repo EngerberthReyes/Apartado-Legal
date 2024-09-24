@@ -13,7 +13,7 @@ import {
   NotificacionVisualizar,
   NotificacionEditar,
   NotificacionEliminar,
-  NotificacionCreacion
+  NotificacionCreacion,
 } from "./notificaciones/notificaciones-amarillas.jsx";
 import { ContratoServicio } from "./contratoServicio.jsx";
 import {
@@ -21,7 +21,7 @@ import {
   EditarContrato,
   EliminarContrato,
 } from "./RUD/visualizar-editar-eliminar.jsx";
-import { ListadoSeguros } from "./listadoSeguros.jsx"
+import { ListadoSeguros } from "./listadoSeguros.jsx";
 
 const ListadoContratos = ({
   redireccionarNuevoContrato,
@@ -35,17 +35,17 @@ const ListadoContratos = ({
   eliminar,
   setTextosFiltrados,
   setEliminar,
-                   setVisualizar,
-                setEditar,
-                 setWeaActiva,
-               setWeaActivaEditar,
-                  setWeaActivaEliminar,
-                    visualizar,
-                  editar,
-                  textFiltrado,
-                  weaActiva,
-                  weaActivaEditar,
-                  weaActivaEliminar,
+  setVisualizar,
+  setEditar,
+  setWeaActiva,
+  setWeaActivaEditar,
+  setWeaActivaEliminar,
+  visualizar,
+  editar,
+  textFiltrado,
+  weaActiva,
+  weaActivaEditar,
+  weaActivaEliminar,
 }) => {
   const {
     register,
@@ -64,28 +64,34 @@ const ListadoContratos = ({
 
   const [elementosFiltradosAceptados, setElementosFiltrados] = useState([]);
 
-const filtrarElementos = () => {
-  const elementosFiltrados = datosIniciales.filter(elemento => {
-    if (elemento.id_tipo_contrato <= 3) {
-      return (
-        elemento.razon_social.toLowerCase().includes(textFiltrado.toLowerCase()) ||
-        elemento.categoria_empresa.toLowerCase().includes(textFiltrado.toLowerCase()) ||
-        elemento.fecha_inicio.toLowerCase().includes(textFiltrado.toLowerCase()) ||
-        elemento.fecha_fin.toLowerCase().includes(textFiltrado.toLowerCase())
-      );
-    } else {
-      return false;
-    }
-  });
+  const filtrarElementos = () => {
+    const elementosFiltrados = datosIniciales.filter((elemento) => {
+      if (elemento.id_tipo_contrato <= 3) {
+        return (
+          elemento.razon_social
+            .toLowerCase()
+            .includes(textFiltrado.toLowerCase()) ||
+          elemento.categoria_empresa
+            .toLowerCase()
+            .includes(textFiltrado.toLowerCase()) ||
+          elemento.fecha_inicio
+            .toLowerCase()
+            .includes(textFiltrado.toLowerCase()) ||
+          elemento.fecha_fin.toLowerCase().includes(textFiltrado.toLowerCase())
+        );
+      } else {
+        return false;
+      }
+    });
 
-  const elementosFiltradosReverse = elementosFiltrados.slice().reverse();
-  setElementosFiltrados(elementosFiltradosReverse);
-};
+    const elementosFiltradosReverse = elementosFiltrados.slice().reverse();
+    setElementosFiltrados(elementosFiltradosReverse);
+  };
 
-useEffect(() => {
-  filtrarElementos();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [datosIniciales, textFiltrado]);
+  useEffect(() => {
+    filtrarElementos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [datosIniciales, textFiltrado]);
 
   const [elementoSeleccionado, setElementoSeleccionado] = useState([]);
   const [tumama, setTumama] = useState(false);
@@ -103,8 +109,11 @@ useEffect(() => {
 
       contratoData = respuesta.data;
 
-      const contratoDataFiltrado = contratoData.filter((elemento) => elemento.id_tipo_contrato <= 3 && elemento.id_contrato === id);
-      
+      const contratoDataFiltrado = contratoData.filter(
+        (elemento) =>
+          elemento.id_tipo_contrato <= 3 && elemento.id_contrato === id
+      );
+
       contratoData = contratoDataFiltrado;
 
       if (alteracion === "editarcontrato") {
@@ -190,19 +199,18 @@ useEffect(() => {
     };
   }, []);
 
-const [listadoDeServicios, setListadoDeServicios] = useState(true);
-const [listadoDeSeguros, setListadoDeSeguros] = useState(false);
+  const [listadoDeServicios, setListadoDeServicios] = useState(true);
+  const [listadoDeSeguros, setListadoDeSeguros] = useState(false);
 
-const listadoServiciosBoton = () => {
-setListadoDeServicios(true);
-  setListadoDeSeguros(false);
-}
+  const listadoServiciosBoton = () => {
+    setListadoDeServicios(true);
+    setListadoDeSeguros(false);
+  };
 
-const listadoSegurosBoton = () => {
-setListadoDeServicios(false);
-  setListadoDeSeguros(true);
-
-}
+  const listadoSegurosBoton = () => {
+    setListadoDeServicios(false);
+    setListadoDeSeguros(true);
+  };
 
   return (
     <>
@@ -252,190 +260,421 @@ setListadoDeServicios(false);
                 {buttonText}
               </button>
             </section>
-                        {listadoDeServicios ? (
-<>
-            <section className={styles.contenedorActualizador}>
-              <section
-                style={{
-                  position: "relative",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
+            {listadoDeServicios ? (
+              <>
+                <section className={styles.contenedorActualizador}>
+                  <section
+                    style={{
+                      position: "relative",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    {contenedorTabla?.classList.contains(
+                      `${styles.contenedorTablaGeneral}`
+                    ) ? (
+                      <p style={{ position: "relative" }}>
+                        Recargue la Lista Presionando Enter.
+                      </p>
+                    ) : (
+                      <p style={{ position: "relative" }}>
+                        Recargue la Lista Presionando Enter.
+                      </p>
+                    )}
+                    <button
+                      className={styles.boton}
+                      style={{
+                        width: "16rem",
+                        height: "3rem",
+                        fontSize: "18px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                      onClick={loadingData}
+                    >
+                      Actualizar Lista de Servicios
+                    </button>
+                  </section>
+                  {contenedorTabla?.classList.contains(
+                    `${styles.contenedorTablaGeneral}`
+                  ) ||
+                    (botones && (
+                      <>
+                        <section
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            columnGap: "2rem",
+                            marginTop: "1rem",
+                          }}
+                        >
+                          <button
+                            className={styles.boton}
+                            style={{
+                              alignSelf: "flex-end",
+                              width: "8rem",
+                              height: "3rem",
+                              fontSize: "18px",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              transform: listadoDeServicios
+                                ? "translateY(-10px)"
+                                : "translateY(0)",
+                            }}
+                            onClick={listadoServiciosBoton}
+                          >
+                            Servicios
+                          </button>
+                          <button
+                            className={styles.boton}
+                            style={{
+                              alignSelf: "flex-end",
+                              width: "8rem",
+                              height: "3rem",
+                              fontSize: "18px",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              transform: listadoDeSeguros
+                                ? "translateY(-10px)"
+                                : "translateY(0)",
+                            }}
+                            onClick={listadoSegurosBoton}
+                          >
+                            Seguros
+                          </button>
+                        </section>
+                      </>
+                    ))}
+                  <BuscadorContratos textosFiltrados={textosFiltrados} />
+                </section>
+
                 {contenedorTabla?.classList.contains(
                   `${styles.contenedorTablaGeneral}`
-                ) ? (
-                  <p style={{ position: "relative" }}>
-                    Recargue la Lista Presionando Enter.
-                  </p>
-                ) : (
-                  <p style={{ position: "relative" }}>
-                    Recargue la Lista Presionando Enter.
+                ) && (
+                  <p style={{ marginTop: "1rem" }}>
+                    Registros Encontrados:
+                    {` ${elementosFiltradosAceptados.length}`}
                   </p>
                 )}
-                <button
-                  className={styles.boton}
-                  style={{
-                    width: "16rem",
-                    height: "3rem",
-                    fontSize: "18px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                  onClick={loadingData}
-                >
-                  Actualizar Lista de Servicios
-                </button>
-              </section>
-              {contenedorTabla?.classList.contains(
-                `${styles.contenedorTablaGeneral}`
-              ) ||
-                (botones && (
+
+                {isLoading ? (
+                  <section
+                    style={{
+                      display: "flex",
+                      position: "relative",
+                      fledatosInicialesirection: "column",
+                    }}
+                  >
+                    <section
+                      className="seccionLoading"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        position: "absolute",
+                        display: "flex",
+                        paddingTop: "4rem",
+                        alignItems: "flex-start",
+                        justifyContent: "center",
+                        zIndex: "200",
+                        marginTop: "1rem",
+                        transition: "background-color 500ms ease",
+                        border: "10px",
+                        backgroundColor: "#000000ab",
+                      }}
+                    >
+                      <LoadingLista />
+                    </section>
+                    <>
+                      <table className={`tabla ${styles.tabla}`}>
+                        <thead className={styles.thead}>
+                          <tr className={styles.tr}>
+                            <th className={styles.th}>Servicio Contratado</th>
+                            <th className={styles.th}>
+                              Tipo de Servicio Contratado
+                            </th>
+                            <th className={styles.th}>Fecha de Inicio</th>
+                            <th className={styles.th}>Fecha de Fin</th>
+                            {!contenedorTabla?.classList.contains(
+                              `${styles.contenedorTablaGeneral}`
+                            ) && (
+                              <th className={styles.th} colSpan="2">
+                                Registros Encontrados:
+                                {` ${elementosFiltradosAceptados.length}`}
+                              </th>
+                            )}
+                          </tr>
+                        </thead>
+                        <tbody
+                          className={`${styles.tbody} ${styles.cuerpoTabla}`}
+                        >
+                          {elementosFiltradosAceptados.map(
+                            (datosGet, index) => {
+                              return (
+                                <tr className={styles.tr} key={index}>
+                                  <td
+                                    className={`${styles.td} ${styles.borderNoneTd}`}
+                                    style={{
+                                      maxWidth: "8rem",
+                                      wordBreak: "break-all",
+                                    }}
+                                  >
+                                    {datosGet.razon_social}
+                                  </td>
+                                  <td
+                                    style={{
+                                      maxWidth: "8rem",
+                                      wordBreak: "break-all",
+                                    }}
+                                    className={`${styles.td} ${styles.borderNoneTd}`}
+                                  >
+                                    {datosGet.tipo_contrato}
+                                  </td>
+                                  <td
+                                    style={{
+                                      maxWidth: "8rem",
+                                      wordBreak: "break-all",
+                                    }}
+                                    className={`${styles.td} ${styles.borderNoneTd}`}
+                                  >
+                                    {datosGet.fecha_inicio}
+                                  </td>
+                                  <td
+                                    style={{
+                                      maxWidth: "8rem",
+                                      wordBreak: "break-all",
+                                      borderBottom: "0",
+                                    }}
+                                    className={`${styles.td} ${styles.borderNoneTd}`}
+                                  >
+                                    {datosGet.fecha_fin}
+                                  </td>
+                                  {!contenedorTabla?.classList.contains(
+                                    `${styles.contenedorTablaGeneral}`
+                                  ) && (
+                                    <>
+                                      <td
+                                        className={`${styles.td} ${styles.borderNoneTd}`}
+                                        style={{
+                                          backgroundColor: "#fde105",
+                                          padding: "0",
+                                          borderBottom: "0",
+                                        }}
+                                      >
+                                        <button
+                                          style={{
+                                            backgroundColor: "#fde105",
+                                            width: "100%",
+                                            height: "4.1rem",
+                                            margin: "0px",
+                                            padding: "1rem",
+                                            color: "black",
+                                          }}
+                                        >
+                                          Editar Contrato
+                                        </button>
+                                      </td>
+                                      <td
+                                        className={`${styles.td} ${styles.borderNoneTd}`}
+                                        style={{
+                                          backgroundColor: "#ff0000",
+                                          padding: "0",
+                                          borderBottom: "0",
+                                        }}
+                                      >
+                                        <button
+                                          style={{
+                                            backgroundColor: "#ff0000",
+                                            width: "100%",
+                                            height: "4.1rem",
+                                            margin: "0px",
+                                            padding: "1rem",
+                                            color: "#000000",
+                                          }}
+                                        >
+                                          Eliminar Contrato
+                                        </button>
+                                      </td>
+                                    </>
+                                  )}
+                                </tr>
+                              );
+                            }
+                          )}
+                        </tbody>
+                      </table>
+                    </>
+                  </section>
+                ) : !isLoading &&
+                  elementosFiltradosAceptados.length === 0 &&
+                  !textFiltrado ? (
                   <>
                     <section
                       style={{
                         display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        columnGap: "2rem",
-                        marginTop: "1rem",
+                        position: "relative",
+                        fledatosInicialesirection: "column",
                       }}
                     >
-                      <button
-                        className={styles.boton}
-                        style={{
-                          alignSelf: "flex-end",
-                          width: "8rem",
-                          height: "3rem",
-                          fontSize: "18px",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          transform: (listadoDeServicios ? "translateY(-10px)" : "translateY(0)")
-                        }}
-                        onClick={listadoServiciosBoton}
+                      <table
+                        className={`tabla ${styles.tabla}`}
+                        style={{ position: "relative" }}
                       >
-                        Servicios
-                      </button>
-                      <button
-                        className={styles.boton}
-                        style={{
-                          alignSelf: "flex-end",
-                          width: "8rem",
-                          height: "3rem",
-                          fontSize: "18px",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          transform: (listadoDeSeguros ? "translateY(-10px)" : "translateY(0)")
-                        }}
-                        onClick={listadoSegurosBoton}
-                      >
-                        Seguros
-                      </button>
+                        <thead className={styles.thead}>
+                          <tr className={styles.tr}>
+                            <th className={styles.th}>Servicio Contratado</th>
+                            <th className={styles.th}>
+                              Tipo de Servicio Contratado
+                            </th>
+                            <th className={styles.th}>Fecha de Inicio</th>
+                            <th className={styles.th}>Fecha de Fin</th>
+                            {!contenedorTabla?.classList.contains(
+                              `${styles.contenedorTablaGeneral}`
+                            ) && (
+                              <th className={styles.th}>
+                                Registros Encontrados:
+                                {` ${elementosFiltradosAceptados.length}`}
+                              </th>
+                            )}
+                          </tr>
+                        </thead>
+                        <tbody className={styles.cuerpoTabla}>
+                          <tr>
+                            <td
+                              colSpan="5"
+                              style={{
+                                textAlign: "center",
+                                height: "15rem",
+                                fontSize: "40px",
+                              }}
+                            >
+                              Sin Registro de Contratos en Servicios...
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </section>
                   </>
-                ))}
-              <BuscadorContratos textosFiltrados={textosFiltrados} />
-            </section>
-
-            {contenedorTabla?.classList.contains(
-              `${styles.contenedorTablaGeneral}`
-            ) && (
-              <p style={{ marginTop: "1rem" }}>
-                Registros Encontrados:
-                {` ${elementosFiltradosAceptados.length}`}
-              </p>
-            )}
-           
-            {isLoading ? (
-
-              <section
-                style={{
-                  display: "flex",
-                  position: "relative",
-                  fledatosInicialesirection: "column",
-                }}
-              >
-                <section
-                  className="seccionLoading"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    position: "absolute",
-                    display: "flex",
-                    paddingTop: "4rem",
-                    alignItems: "flex-start",
-                    justifyContent: "center",
-                    zIndex: "200",
-                    marginTop: "1rem",
-                    transition: "background-color 500ms ease",
-                    border: "10px",
-                    backgroundColor: "#000000ab",
-                  }}
-                >
-                  <LoadingLista />
-                </section>
-                <>
-                  <table className={`tabla ${styles.tabla}`}>
-                    <thead className={styles.thead}>
-                      <tr className={styles.tr}>
-                        <th className={styles.th}>Servicio Contratado</th>
-                        <th className={styles.th}>
-                          Tipo de Servicio Contratado
-                        </th>
-                        <th className={styles.th}>Fecha de Inicio</th>
-                        <th className={styles.th}>Fecha de Fin</th>
-                        {!contenedorTabla?.classList.contains(
-                          `${styles.contenedorTablaGeneral}`
-                        ) && (
-                          <th className={styles.th} colSpan="2">
-                            Registros Encontrados:
-                            {` ${elementosFiltradosAceptados.length}`}
+                ) : elementosFiltradosAceptados.length > 0 ? (
+                  <>
+                    <table className={`tabla ${styles.tabla}`}>
+                      <thead className={styles.thead}>
+                        <tr
+                          className={styles.tr}
+                          style={{ backgroundColor: "#fde105" }}
+                        >
+                          <th className={styles.th}>Servicio Contratado</th>
+                          <th className={styles.th}>
+                            Tipo de Servicio Contratado
                           </th>
-                        )}
-                      </tr>
-                    </thead>
-                    <tbody className={`${styles.tbody} ${styles.cuerpoTabla}`}>
-                      {elementosFiltradosAceptados.map((datosGet, index) => {
-                        return (
-                          <tr className={styles.tr} key={index}>
+                          <th className={styles.th}>Fecha de Inicio</th>
+                          <th className={styles.th}>Fecha de Fin</th>
+                          {!contenedorTabla?.classList.contains(
+                            `${styles.contenedorTablaGeneral}`
+                          ) && (
+                            <th className={styles.th} colSpan="2">
+                              Registros Encontrados:
+                              {` ${elementosFiltradosAceptados.length}`}
+                            </th>
+                          )}
+                        </tr>
+                      </thead>
+                      <tbody
+                        className={`${styles.tbody} ${styles.cuerpoTabla}`}
+                      >
+                        {elementosFiltradosAceptados.map((datosGet, index) => (
+                          <tr
+                            className={`${styles.tr}`}
+                            key={datosGet.id_contrato}
+                            style={{ cursor: "pointer" }}
+                            onClick={() => handleClickId(datosGet.id_contrato)}
+                          >
                             <td
                               className={`${styles.td} ${styles.borderNoneTd}`}
+                              onMouseEnter={() =>
+                                handleTdMouseEnter(
+                                  index,
+                                  "",
+                                  datosGet.razon_social
+                                )
+                              }
+                              onMouseLeave={punteroSinHover}
                               style={{
                                 maxWidth: "8rem",
                                 wordBreak: "break-all",
+                                backgroundColor:
+                                  hoverTdIndex === index
+                                    ? "#eeeeee45"
+                                    : "transparent",
                               }}
                             >
                               {datosGet.razon_social}
                             </td>
                             <td
+                              className={`${styles.td} ${styles.borderNoneTd} animate__animated`}
+                              onMouseEnter={() =>
+                                handleTdMouseEnter(
+                                  index,
+                                  "",
+                                  datosGet.razon_social
+                                )
+                              }
+                              onMouseLeave={punteroSinHover}
                               style={{
                                 maxWidth: "8rem",
                                 wordBreak: "break-all",
+                                backgroundColor:
+                                  hoverTdIndex === index
+                                    ? "#eeeeee45"
+                                    : "transparent",
                               }}
-                              className={`${styles.td} ${styles.borderNoneTd}`}
                             >
                               {datosGet.tipo_contrato}
                             </td>
                             <td
+                              className={`${styles.td} ${styles.borderNoneTd} animate__animated`}
+                              onMouseEnter={() =>
+                                handleTdMouseEnter(
+                                  index,
+                                  "",
+                                  datosGet.razon_social
+                                )
+                              }
+                              onMouseLeave={punteroSinHover}
                               style={{
                                 maxWidth: "8rem",
                                 wordBreak: "break-all",
+                                backgroundColor:
+                                  hoverTdIndex === index
+                                    ? "#eeeeee45"
+                                    : "transparent",
                               }}
-                              className={`${styles.td} ${styles.borderNoneTd}`}
                             >
                               {datosGet.fecha_inicio}
                             </td>
                             <td
+                              className={`${styles.td} ${styles.borderNoneTd} animate__animated`}
+                              onMouseEnter={() =>
+                                handleTdMouseEnter(
+                                  index,
+                                  "",
+                                  datosGet.razon_social
+                                )
+                              }
+                              onMouseLeave={punteroSinHover}
                               style={{
                                 maxWidth: "8rem",
                                 wordBreak: "break-all",
+                                backgroundColor:
+                                  hoverTdIndex === index
+                                    ? "#eeeeee45"
+                                    : "transparent",
                                 borderBottom: "0",
                               }}
-                              className={`${styles.td} ${styles.borderNoneTd}`}
                             >
                               {datosGet.fecha_fin}
                             </td>
@@ -449,6 +688,17 @@ setListadoDeServicios(false);
                                     backgroundColor: "#fde105",
                                     padding: "0",
                                     borderBottom: "0",
+                                  }}
+                                  onMouseEnter={() =>
+                                    handleTdMouseEnter(index, "editarcontrato")
+                                  }
+                                  onMouseLeave={punteroSinHover}
+                                  onClick={(event) => {
+                                    event.stopPropagation();
+                                    handleClickId(
+                                      datosGet.id_contrato,
+                                      "editarcontrato"
+                                    );
                                   }}
                                 >
                                   <button
@@ -471,6 +721,20 @@ setListadoDeServicios(false);
                                     padding: "0",
                                     borderBottom: "0",
                                   }}
+                                  onMouseEnter={() =>
+                                    handleTdMouseEnter(
+                                      index,
+                                      "eliminarcontrato"
+                                    )
+                                  }
+                                  onMouseLeave={punteroSinHover}
+                                  onClick={(event) => {
+                                    event.stopPropagation();
+                                    handleClickId(
+                                      datosGet.id_contrato,
+                                      "eliminarcontrato"
+                                    );
+                                  }}
                                 >
                                   <button
                                     style={{
@@ -488,292 +752,77 @@ setListadoDeServicios(false);
                               </>
                             )}
                           </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </>
-              </section>
-         
-            ) : !isLoading && elementosFiltradosAceptados.length === 0 && !textFiltrado ? (
-              <>
-                <section
-                  style={{
-                    display: "flex",
-                    position: "relative",
-                    fledatosInicialesirection: "column",
-                  }}
-                >
-                  <table
-                    className={`tabla ${styles.tabla}`}
-                    style={{ position: "relative" }}
-                  >
-                    <thead className={styles.thead}>
-                      <tr className={styles.tr}>
-                        <th className={styles.th}>Servicio Contratado</th>
-                        <th className={styles.th}>
-                          Tipo de Servicio Contratado
-                        </th>
-                        <th className={styles.th}>Fecha de Inicio</th>
-                        <th className={styles.th}>Fecha de Fin</th>
-                        {!contenedorTabla?.classList.contains(
-                          `${styles.contenedorTablaGeneral}`
-                        ) && (
+                        ))}
+                      </tbody>
+                    </table>
+                  </>
+                ) : (
+                  <>
+                    <table className={`tabla ${styles.tabla}`}>
+                      <thead className={styles.thead}>
+                        <tr className={styles.tr}>
+                          <th className={styles.th}>Servicio Contratado</th>
                           <th className={styles.th}>
-                            Registros Encontrados:
-                            {` ${elementosFiltradosAceptados.length}`}
+                            Tipo de Servicio Contratado
                           </th>
-                        )}
-                      </tr>
-                    </thead>
-                    <tbody className={styles.cuerpoTabla}>
-                      <tr>
-                        <td
-                          colSpan="5"
-                          style={{
-                            textAlign: "center",
-                            height: "15rem",
-                            fontSize: "40px",
-                          }}
-                        >
-                          Sin Registro de Contratos en Servicios...
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </section>
-              </>
-            ) : elementosFiltradosAceptados.length > 0 ? (
-              <>
-                <table className={`tabla ${styles.tabla}`}>
-                  <thead className={styles.thead}>
-                    <tr
-                      className={styles.tr}
-                      style={{ backgroundColor: "#fde105" }}
-                    >
-                      <th className={styles.th}>Servicio Contratado</th>
-                      <th className={styles.th}>Tipo de Servicio Contratado</th>
-                      <th className={styles.th}>Fecha de Inicio</th>
-                      <th className={styles.th}>Fecha de Fin</th>
-                      {!contenedorTabla?.classList.contains(
-                        `${styles.contenedorTablaGeneral}`
-                      ) && (
-                        <th className={styles.th} colSpan="2">
-                          Registros Encontrados:
-                          {` ${elementosFiltradosAceptados.length}`}
-                        </th>
-                      )}
-                    </tr>
-                  </thead>
-                  <tbody className={`${styles.tbody} ${styles.cuerpoTabla}`}>
-                    {elementosFiltradosAceptados.map((datosGet, index) => (
-                      <tr
-                        className={`${styles.tr}`}
-                        key={datosGet.id_contrato}
-                        style={{ cursor: "pointer" }}
-                        onClick={() => handleClickId(datosGet.id_contrato)}
+                          <th className={styles.th}>Fecha de Inicio</th>
+                          <th className={styles.th}>Fecha de Fin</th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        className={`${styles.tbody} ${styles.cuerpoTabla}`}
                       >
-                        <td
-                          className={`${styles.td} ${styles.borderNoneTd}`}
-                          onMouseEnter={() =>
-                            handleTdMouseEnter(index, "", datosGet.razon_social)
-                          }
-                          onMouseLeave={punteroSinHover}
-                          style={{
-                            maxWidth: "8rem",
-                            wordBreak: "break-all",
-                            backgroundColor:
-                              hoverTdIndex === index
-                                ? "#eeeeee45"
-                                : "transparent",
-                          }}
-                        >
-                          {datosGet.razon_social}
-                        </td>
-                        <td
-                          className={`${styles.td} ${styles.borderNoneTd} animate__animated`}
-                          onMouseEnter={() =>
-                            handleTdMouseEnter(index, "", datosGet.razon_social)
-                          }
-                          onMouseLeave={punteroSinHover}
-                          style={{
-                            maxWidth: "8rem",
-                            wordBreak: "break-all",
-                            backgroundColor:
-                              hoverTdIndex === index
-                                ? "#eeeeee45"
-                                : "transparent",
-                          }}
-                        >
-                          {datosGet.tipo_contrato}
-                        </td>
-                        <td
-                          className={`${styles.td} ${styles.borderNoneTd} animate__animated`}
-                          onMouseEnter={() =>
-                            handleTdMouseEnter(index, "", datosGet.razon_social)
-                          }
-                          onMouseLeave={punteroSinHover}
-                          style={{
-                            maxWidth: "8rem",
-                            wordBreak: "break-all",
-                            backgroundColor:
-                              hoverTdIndex === index
-                                ? "#eeeeee45"
-                                : "transparent",
-                          }}
-                        >
-                          {datosGet.fecha_inicio}
-                        </td>
-                        <td
-                          className={`${styles.td} ${styles.borderNoneTd} animate__animated`}
-                          onMouseEnter={() =>
-                            handleTdMouseEnter(index, "", datosGet.razon_social)
-                          }
-                          onMouseLeave={punteroSinHover}
-                          style={{
-                            maxWidth: "8rem",
-                            wordBreak: "break-all",
-                            backgroundColor:
-                              hoverTdIndex === index
-                                ? "#eeeeee45"
-                                : "transparent",
-                            borderBottom: "0",
-                          }}
-                        >
-                          {datosGet.fecha_fin}
-                        </td>
-                        {!contenedorTabla?.classList.contains(
-                          `${styles.contenedorTablaGeneral}`
-                        ) && (
-                          <>
-                            <td
-                              className={`${styles.td} ${styles.borderNoneTd}`}
-                              style={{
-                                backgroundColor: "#fde105",
-                                padding: "0",
-                                borderBottom: "0",
-                              }}
-                              onMouseEnter={() =>
-                                handleTdMouseEnter(index, "editarcontrato")
-                              }
-                              onMouseLeave={punteroSinHover}
-                              onClick={(event) => {
-                                event.stopPropagation();
-                                handleClickId(
-                                  datosGet.id_contrato,
-                                  "editarcontrato"
-                                );
-                              }}
-                            >
-                              <button
-                                style={{
-                                  backgroundColor: "#fde105",
-                                  width: "100%",
-                                  height: "4.1rem",
-                                  margin: "0px",
-                                  padding: "1rem",
-                                  color: "black",
-                                }}
-                              >
-                                Editar Contrato
-                              </button>
-                            </td>
-                            <td
-                              className={`${styles.td} ${styles.borderNoneTd}`}
-                              style={{
-                                backgroundColor: "#ff0000",
-                                padding: "0",
-                                borderBottom: "0",
-                              }}
-                              onMouseEnter={() =>
-                                handleTdMouseEnter(index, "eliminarcontrato")
-                              }
-                              onMouseLeave={punteroSinHover}
-                              onClick={(event) => {
-                                event.stopPropagation();
-                                handleClickId(
-                                  datosGet.id_contrato,
-                                  "eliminarcontrato"
-                                );
-                              }}
-                            >
-                              <button
-                                style={{
-                                  backgroundColor: "#ff0000",
-                                  width: "100%",
-                                  height: "4.1rem",
-                                  margin: "0px",
-                                  padding: "1rem",
-                                  color: "#000000",
-                                }}
-                              >
-                                Eliminar Contrato
-                              </button>
-                            </td>
-                          </>
-                        )}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                        <tr>
+                          <td
+                            colSpan="5"
+                            style={{
+                              textAlign: "center",
+                              height: "15rem",
+                              fontSize: "40px",
+                            }}
+                          >
+                            <p style={{ wordBreak: "break-word" }}>
+                              Sin Resultados Para: &quot;
+                              {textFiltrado.length > 16
+                                ? `${textFiltrado.substring(0, 16)}...`
+                                : textFiltrado}
+                              &quot;
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </>
+                )}
               </>
             ) : (
-              <>
-                <table className={`tabla ${styles.tabla}`}>
-                  <thead className={styles.thead}>
-                    <tr className={styles.tr}>
-                      <th className={styles.th}>Servicio Contratado</th>
-                      <th className={styles.th}>Tipo de Servicio Contratado</th>
-                      <th className={styles.th}>Fecha de Inicio</th>
-                      <th className={styles.th}>Fecha de Fin</th>
-                    </tr>
-                  </thead>
-                  <tbody className={`${styles.tbody} ${styles.cuerpoTabla}`}>
-                    <tr>
-                      <td
-                        colSpan="5"
-                        style={{
-                          textAlign: "center",
-                          height: "15rem",
-                          fontSize: "40px",
-                        }}
-                      >
-                        <p style={{ wordBreak: "break-word" }}>
-                          Sin Resultados Para: &quot;
-                          {textFiltrado.length > 16
-                            ? `${textFiltrado.substring(0, 16)}...`
-                            : textFiltrado}
-                          &quot;
-                        </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </>
+              <ListadoSeguros
+                setVisualizar={setVisualizar}
+                setEditar={setEditar}
+                setWeaActiva={setWeaActiva}
+                setWeaActivaEditar={setWeaActivaEditar}
+                setWeaActivaEliminar={setWeaActivaEliminar}
+                visualizar={visualizar}
+                editar={editar}
+                setEliminar={setEliminar}
+                setTextosFiltrados={setTextosFiltrados}
+                textFiltrado={textFiltrado}
+                especialActivo={especialActivo}
+                datosIniciales={datosIniciales}
+                isLoading={isLoading}
+                botones={botones}
+                eliminar={eliminar}
+                buttonText={buttonText}
+                listadoDeServicios={listadoDeServicios}
+                listadoDeSeguros={listadoDeSeguros}
+                listadoServiciosBoton={listadoServiciosBoton}
+                listadoSegurosBoton={listadoSegurosBoton}
+                setListadoDeServicios={setListadoDeServicios}
+                contenedorTabla={contenedorTabla}
+                setListadoDeSeguros={setListadoDeSeguros}
+                loadingData={loadingData}
+              />
             )}
-            </>
-                          ) : (
-
-<ListadoSeguros                  setVisualizar={setVisualizar}
-                 setEditar={setEditar}
-                 setWeaActiva={setWeaActiva}
-                 setWeaActivaEditar={setWeaActivaEditar}
-                  setWeaActivaEliminar={setWeaActivaEliminar}
-                  visualizar={visualizar}
-                  editar={editar}
-                  setEliminar={setEliminar}
-                  setTextosFiltrados={setTextosFiltrados}
-                  textFiltrado={textFiltrado}
-                  especialActivo={especialActivo}
-
-                    datosIniciales={datosIniciales}
-                    isLoading={isLoading}
-                    botones={botones}
-                    eliminar={eliminar}
-                    buttonText={buttonText}
-                    listadoDeServicios={listadoDeServicios} listadoDeSeguros={listadoDeSeguros} listadoServiciosBoton={listadoServiciosBoton} listadoSegurosBoton={listadoSegurosBoton} setListadoDeServicios={setListadoDeServicios} contenedorTabla={contenedorTabla} setListadoDeSeguros={setListadoDeSeguros} loadingData={loadingData}/>
-
-              )}
           </section>
         </section>
       </section>
