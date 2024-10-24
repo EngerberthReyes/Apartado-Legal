@@ -1,6 +1,4 @@
-# Contratos y Demandas a Empresas de Servicios
-
-[Apartado Legal:]
+# Contratos y Demandas a Empresas de Servicios - Apartado Legal
 
 En Este Sistema Podrá Contratar y Demandar a Empresas de Servicios de Terceros. Creado con Next.JS y MySQL.
 
