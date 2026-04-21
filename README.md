@@ -10,7 +10,7 @@ Usar Xampp Como Programa de Gestión de Base de Datos.
 
 Crear una Base de Datos Llamada: contrataciones_turisticas_servicios_seguros y Dentro de Ella, Importar el Archivo: contrataciones_turisticas_servicios_seguros.sql
 
-Dentro de la Carpeta Usar El Comando Para Descargar Las Dependencias Con: "npm i" en Una Terminal, Una Vez Descargadas e Instaladas Las Dependencias
+Dentro de la Carpeta Usar El Comando Para Descargar Las Dependencias Con: "npm install --legacy-peer-deps" en Una Terminal, Una Vez Descargadas e Instaladas Las Dependencias
 
 Proceda a Ejecutar el Proyecto Usando: "npm run dev"
 
